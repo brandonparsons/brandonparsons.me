@@ -14,10 +14,10 @@ use Rack::Rewrite do
 
   # Redirect all http traffic to https
   r302 %r{.*}, lambda {|match, rack_env| "https://#{rack_env['SERVER_NAME']}#{match}" },
-    :if => Proc.new do |rack_env|
+    :if => Proc.new { |rack_env|
       req = Rack::Request.new(rack_env)
       req.scheme == 'http'
-    end
+    }
 
   # Redirect https://www.brandonparsons.me to https://brandonparsons.me
   r301 %r{.*}, lambda {|match, rack_env| "https://brandonparsons.me#{match}" },
