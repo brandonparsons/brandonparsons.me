@@ -23,7 +23,11 @@ use Rack::Rewrite do
   # OLD BLOG #
   ############
 
-  # Rewrite old blog posts
+  # Old redirects
+  r301 "/2012/vagrant-and-chef-for-ubuntu-deployment-server/", "https://blog.brandonparsons.me/2012/ultimate-dev-prod-parity-ubuntu-server-with-chef-and-vagrant/",
+    :if => Proc.new { |rack_env| rack_env['SERVER_NAME'] == 'brandonparsons.me' }
+
+  # Rewrite all old blog posts
   # Of form: http://brandonparsons.me/2013/installing-gems-in-a-new-chef-system-ruby/
   # To form: https://blog.brandonparsons.me/2013-installing-gems-in-a-new-chef-system-ruby/
   r301 %r{/(\d{4})/(.+)/}, "https://blog.brandonparsons.me/$1-$2",
