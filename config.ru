@@ -15,7 +15,7 @@ use Rack::Rewrite do
   # Redirect all http traffic to https
   r302 %r{.*}, lambda {|match, rack_env| "https://#{rack_env['SERVER_NAME']}#{match}" },
     :if => Proc.new { |rack_env|
-      rack_env['REQUEST_URI'].match(%r{https})
+      !rack_env['REQUEST_URI'].match(%r{https})
     }
 
   # Redirect https://www.brandonparsons.me to https://brandonparsons.me
