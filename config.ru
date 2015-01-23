@@ -40,8 +40,8 @@ use Rack::Rewrite do
   r301 %r{/blog/(\d{4})-(\d{2})-(\d{2})-(.+)/}, "https://blog.brandonparsons.me/$1-$4",
     :if => Proc.new { |rack_env| rack_env['SERVER_NAME'] == 'www.retirementplan.io' }
 
-  # Rewrite everything else to the project page
-  r301 %r{.*}, "https://blog.brandonparsons.me/projects/",
+  # Rewrite everything else to the 'shutting down' page
+  r301 %r{.*}, "http://blog.brandonparsons.me/2015-shutting-down-retirementplan-io/",
     :if => Proc.new { |rack_env| rack_env['SERVER_NAME'] == 'www.retirementplan.io' }
 
 end
