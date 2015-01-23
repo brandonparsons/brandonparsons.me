@@ -41,7 +41,7 @@ use Rack::Rewrite do
     :if => Proc.new { |rack_env| rack_env['SERVER_NAME'] == 'www.retirementplan.io' }
 
   # Rewrite everything else to the 'shutting down' page
-  r301 %r{.*}, "http://blog.brandonparsons.me/2015-shutting-down-retirementplan-io/",
+  r301 %r{.*}, "https://blog.brandonparsons.me/2015-shutting-down-retirementplan-io/",
     :if => Proc.new { |rack_env| rack_env['SERVER_NAME'] == 'www.retirementplan.io' }
 
 end
