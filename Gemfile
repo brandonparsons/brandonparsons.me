@@ -7,6 +7,6 @@ gem 'sinatra'
 gem 'sinatra-contrib'
 
 gem 'rack-rewrite'
-gem 'rack-ssl-enforcer'
+# gem 'rack-ssl-enforcer'
 
 gem 'slim'

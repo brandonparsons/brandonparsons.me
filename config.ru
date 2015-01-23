@@ -1,9 +1,5 @@
 require './app'
 require 'rack/rewrite'
-require 'rack/ssl-enforcer'
-
-
-use Rack::SslEnforcer
 
 use Rack::Rewrite do
 

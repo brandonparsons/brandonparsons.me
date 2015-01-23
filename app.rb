@@ -16,8 +16,12 @@ class SinatraApp < Sinatra::Base
     settings.development? ? "development!!" : "not development!!!"
   end
 
-  get '/server' do
-    request.host
+  get '/request' do
+    request.inspect
+  end
+
+  get '/headers' do
+    headers.inspect
   end
 
   not_found do
