@@ -8,7 +8,7 @@ use Rack::Rewrite do
   ###########
 
   # Redirect all http traffic to https
-  r302 %r{.*}, lambda {|match, rack_env| "https://#{rack_env['SERVER_NAME']}#{match}" },
+  r301 %r{.*}, lambda {|match, rack_env| "https://#{rack_env['SERVER_NAME']}#{match}" },
     :if => Proc.new { |rack_env|
       req = Rack::Request.new(rack_env)
       req.scheme == 'http'
