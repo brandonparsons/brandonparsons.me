@@ -1,14 +1,8 @@
 require './app'
 require 'rack/rewrite'
 
-# r301 '/contact-us.php', '/contact-us'
-# r301 '/wiki/John_Trupiano', '/john'
 # rewrite %r{/features(.*)}, '/facial_features$1'
-# r301 %r{.*}, 'http://mynewdomain.com$&', :if => Proc.new {|rack_env|
-#   rack_env['SERVER_NAME'] != 'mynewdomain.com'
-# }
-# r301 "/features", "/facial_features", :host => "facerecognizer.com"
-# r301 /.*/,  Proc.new {|path, rack_env| "http://www.#{rack_env['SERVER_NAME']}#{path}" }, :if => Proc.new {|rack_env| ! (rack_env['SERVER_NAME# '] =~ /www\./i)}
+# r301 %r{.*}, 'http://mynewdomain.com$&', :if => Proc.new {|rack_env| rack_env['SERVER_NAME'] != 'mynewdomain.com' }
 # r301 %r{/old-path(\?.*)}, '/new-path$1'
 # r301 %r{.*}, 'http://canonical-domain.com$&', :if => Proc.new { |rack_env| rack_env['SERVER_NAME'] != 'canonical-domain.com' }
 
@@ -19,7 +13,7 @@ use Rack::Rewrite do
   ###########
 
   # Redirect all http traffic to https
-  r302 %r{.*}, "https://#{rack_env['SERVER_NAME']}$&", scheme: 'http'
+  r302 %r{.*}, Proc.new {|path, rack_env| "https://#{rack_env['SERVER_NAME']}$&" }, scheme: 'http'
 
   # Redirect https://www.brandonparsons.me to https://brandonparsons.me
   r302 /.*/,  Proc.new {|path, rack_env| "https://brandonparsons.me#{path}" }, host: 'www.brandonparsons.me'
