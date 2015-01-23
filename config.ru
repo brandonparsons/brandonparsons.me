@@ -14,10 +14,10 @@ use Rack::Rewrite do
 
   # Redirect all http traffic to https
   r302 %r{.*}, lambda {|match, rack_env| "https://#{rack_env['SERVER_NAME']}#{match}" },
-    :if => Proc.new { |rack_env| rack_env['SCHEME'] == 'http' }
+    :if => Proc.new { |rack_env| rack_env.url_scheme == 'http' }
 
   # Redirect https://www.brandonparsons.me to https://brandonparsons.me
-  r302 %r{.*}, lambda {|match, rack_env| "https://brandonparsons.me#{match}" },
+  r301 %r{.*}, lambda {|match, rack_env| "https://brandonparsons.me#{match}" },
     :if => Proc.new { |rack_env| rack_env['SERVER_NAME'] == 'www.brandonparsons.me' }
 
 
@@ -28,7 +28,7 @@ use Rack::Rewrite do
   # Rewrite old blog posts
   # Of form: http://brandonparsons.me/2013/installing-gems-in-a-new-chef-system-ruby/
   # To form: https://blog.brandonparsons.me/2013-installing-gems-in-a-new-chef-system-ruby/
-  r302 %r{/(\d{4})/(.+)/}, "https://blog.brandonparsons.me/$1-$2",
+  r301 %r{/(\d{4})/(.+)/}, "https://blog.brandonparsons.me/$1-$2",
     :if => Proc.new { |rack_env| rack_env['SERVER_NAME'] == 'brandonparsons.me' }
 
 
@@ -39,11 +39,11 @@ use Rack::Rewrite do
   # Rewrite old blog posts
   # Of form: https://www.retirementplan.io/blog/2014-09-22-management-expense-ratios/
   # To form: http://blog.brandonparsons.me/2014-management-expense-ratios/
-  r302 %r{/blog/(\d{4})-(\d{2})-(\d{2})-(.+)/}, "https://blog.brandonparsons.me/$1-$4",
+  r301 %r{/blog/(\d{4})-(\d{2})-(\d{2})-(.+)/}, "https://blog.brandonparsons.me/$1-$4",
     :if => Proc.new { |rack_env| rack_env['SERVER_NAME'] == 'www.retirementplan.io' }
 
   # Rewrite everything else to the project page
-  r302 %r{.*}, "https://blog.brandonparsons.me/projects/",
+  r301 %r{.*}, "https://blog.brandonparsons.me/projects/",
     :if => Proc.new { |rack_env| rack_env['SERVER_NAME'] == 'www.retirementplan.io' }
 
 end
