@@ -1,6 +1,6 @@
 require 'sinatra/base'
-require "sinatra/reloader"
-require "slim"
+require 'sinatra/reloader'
+require 'slim'
 
 class SinatraApp < Sinatra::Base
 
