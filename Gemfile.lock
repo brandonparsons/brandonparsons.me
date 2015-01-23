@@ -9,6 +9,7 @@ GEM
     rack-protection (1.5.3)
       rack
     rack-rewrite (1.5.1)
+    rack-ssl-enforcer (0.2.8)
     rack-test (0.6.3)
       rack (>= 1.0)
     sinatra (1.4.5)
@@ -37,6 +38,7 @@ PLATFORMS
 
 DEPENDENCIES
   rack-rewrite
+  rack-ssl-enforcer
   sinatra
   sinatra-contrib
   slim
