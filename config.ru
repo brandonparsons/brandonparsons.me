@@ -13,7 +13,7 @@ use Rack::Rewrite do
   ###########
 
   # Redirect all http traffic to https
-  r302 %r{.*}, lambda {|match, rack_env| "https://#{rack_env['SERVER_NAME']}$&" }, scheme: 'http'
+  r302 %r{.*}, lambda {|match, rack_env| "https://#{rack_env['SERVER_NAME']}#{match}" }, scheme: 'http'
 
   # Redirect https://www.brandonparsons.me to https://brandonparsons.me
   r302 %r{.*}, lambda {|match, rack_env| "https://brandonparsons.me#{match}" }, host: 'www.brandonparsons.me'
