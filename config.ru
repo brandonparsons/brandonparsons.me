@@ -24,7 +24,7 @@ use Rack::Rewrite do
   ############
 
   # Old redirects
-  r301 "/2012/vagrant-and-chef-for-ubuntu-deployment-server/", "https://blog.brandonparsons.me/2012/ultimate-dev-prod-parity-ubuntu-server-with-chef-and-vagrant/",
+  r301 "/2012/vagrant-and-chef-for-ubuntu-deployment-server/", "https://blog.brandonparsons.me/2012-ultimate-dev-prod-parity-ubuntu-server-with-chef-and-vagrant/",
     :if => Proc.new { |rack_env| rack_env['SERVER_NAME'] == 'brandonparsons.me' }
 
   # Rewrite all old blog posts
