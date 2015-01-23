@@ -12,18 +12,6 @@ class SinatraApp < Sinatra::Base
     slim :index
   end
 
-  get '/env' do
-    settings.development? ? "development!!" : "not development!!!"
-  end
-
-  get '/request' do
-    request.inspect
-  end
-
-  get '/headers' do
-    headers.inspect
-  end
-
   not_found do
     status 404
     slim :not_found
